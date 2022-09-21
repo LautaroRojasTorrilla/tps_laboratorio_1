@@ -53,7 +53,7 @@ int GetFloat(char mensaje[],int reintentos, int minimo, int maximo, char mensaje
 		retornoScanF = scanf("%f",&auxiliarFloat);
 		do {
 			//printf("\t este es el reintento %d", reintentos);
-			if (retornoScanF != 1 || auxiliarFloat > maximo || auxiliarFloat < minimo || isdigit(auxiliarFloat))
+			if (retornoScanF != 1 || auxiliarFloat > maximo || auxiliarFloat < minimo)
 				// Si no se hace la validación, se pide que ingrese de nuevo
 			{
 				printf("%s", mensajeError);
@@ -124,7 +124,7 @@ int GetCharSinReintentos(char *pResultado, char *mensaje, char *mensajeError, ch
 	return retorno;
 }
 
-int menuContinuar(char* mensaje)
+int menuContinuarFinal(char* mensaje)
 {
 	int seleccion;
 
@@ -136,6 +136,18 @@ int menuContinuar(char* mensaje)
 	{
 		printf("\n\tGracias por utilizar este programa desarrollado por Lautaro Rojas Torrilla, estudiante UTN.");
 	}
+
+	return seleccion;
+}
+
+int menuContinuar(char* mensaje)
+{
+	int seleccion;
+
+	printf("%s", mensaje);
+	printf("\n1. Sí\n2. No\n");
+	fflush(stdin);
+	scanf("%d", &seleccion);
 
 	return seleccion;
 }
