@@ -7,6 +7,16 @@
 
 #include "Input.h"
 
+/// @fn int getInt(char[], int, int, int, char[], int*)
+/// @brief Solicita un entero realizando validaciones.
+///
+/// @param mensaje Es el mensaje editable que muestra qué se está ingresando (previo a scanf).
+/// @param reintentos Es la cantidad de reintentos tras fallar la validación.
+/// @param minimo Es el valor mínimo que tolera la función.
+/// @param maximo Es el valor máximo que tolera la función.
+/// @param mensajeError Es el mensaje que brindará tras fallar la validación.
+/// @param pNumeroIngresado Puntero de la dirección del entero.
+/// @return Retorna -1 si no pasa la validación y 0 si el entero ingresado aprueba la validación.
 int GetInt(char mensaje[], int reintentos, int minimo, int maximo, char mensajeError[], int *pNumeroIngresado)
 {
 	int retorno = -1;
@@ -39,6 +49,16 @@ int GetInt(char mensaje[], int reintentos, int minimo, int maximo, char mensajeE
 	return retorno;
 }
 
+/// @fn float getFloat(char[], int, int, int, char[], float*)
+/// @brief Solicita un flotante realizando validaciones.
+///
+/// @param mensaje Es el mensaje editable que muestra qué se está ingresando (previo a scanf).
+/// @param reintentos Es la cantidad de reintentos tras fallar la validación.
+/// @param minimo Es el valor mínimo que tolera la función.
+/// @param maximo Es el valor máximo que tolera la función.
+/// @param mensajeError Es el mensaje que brindará tras fallar la validación.
+/// @param pNumeroIngresado Puntero de la dirección del entero.
+/// @return Retorna -1 si no pasa la validación y 0 si el entero ingresado aprueba la validación.
 int GetFloat(char mensaje[],int reintentos, int minimo, int maximo, char mensajeError[], float *pNumeroIngresadoF)
 {
 	int retorno = -1;
@@ -124,6 +144,11 @@ int GetCharSinReintentos(char *pResultado, char *mensaje, char *mensajeError, ch
 	return retorno;
 }
 
+/// @fn int menuContinuarFinal(char*)
+/// @brief Menu utilizado para continuar o no la iteración.
+///
+/// @param mensaje Es el mensaje editable que muestra qué se está ingresando (previo a scanf).
+/// @return muestra el printeo
 int menuContinuarFinal(char* mensaje)
 {
 	int seleccion;
@@ -140,6 +165,11 @@ int menuContinuarFinal(char* mensaje)
 	return seleccion;
 }
 
+/// @fn int menuContinuarFinal(char*)
+/// @brief Menu utilizado para continuar o no la iteración.
+///
+/// @param mensaje Es el mensaje editable que muestra qué se está ingresando (previo a scanf).
+/// @return muestra el printeo
 int menuContinuar(char* mensaje)
 {
 	int seleccion;
