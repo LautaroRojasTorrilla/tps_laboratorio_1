@@ -30,7 +30,7 @@ void MenuPrincial(float costo1, float costo2, float costo3, int arq, int def, in
 	puts(" 2. CARGA DE JUGADORES");
 	MostrarJugadores(arq, def, med, del);
 	puts(" 3. REALIZAR TODOS LOS CALCULOS");
-	puts(" 3. INFORMAR TODOS LOS RESULTADOS");
+	puts(" 4. INFORMAR TODOS LOS RESULTADOS");
 	puts(" 5. SALIR");
 	system("pause");
 }
