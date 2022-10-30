@@ -9,7 +9,11 @@
 
 static int genID(void);
 
-
+/// @fn void eJugador_printOne(eJugador)
+/// @brief  funcion para imprimir un jugador
+///
+/// @param jug tipo de dato dle jugador
+/// es void, muestra una impresion
 void eJugador_printOne(eJugador jug)
 {
 	printf("|%2d|%-29s|%-29s|%2d |%2d  |%7.2f  |%5d|%5d\n",
@@ -17,8 +21,14 @@ void eJugador_printOne(eJugador jug)
 			jug.aniosContrato, jug.isEmpty);
 }
 
-
-int eJugador_printAll(eJugador arrayJugador[], int len, int state)
+/// @fn int eJugador_printAll(eJugador[], int, short)
+/// @brief funcion para imprimir el array de jugadoress
+///
+/// @param arrayJugador array a evaluar
+/// @param len tamaño del array
+/// @param state estado del array
+/// @return -1 si no pasa las validaciones, 0 si da todo ok y muestra el listado
+int eJugador_printAll(eJugador arrayJugador[], int len, short state)
 {
 	int retorno = -1;
 	int i;
@@ -46,6 +56,15 @@ int eJugador_printAll(eJugador arrayJugador[], int len, int state)
 	return retorno;
 }
 
+/// @fn int eJugador_printConConf(eJugador[], eConfederacion[], int, int, short)
+/// @brief funcion para imprimir el array de jugadores por conf
+///
+/// @param arrayJugador  array a evaluar
+/// @param arrayConf array a evaluar
+/// @param lenI tamaño del array
+/// @param lenJ tamaño del array
+/// @param state estado del array
+/// @return -1 si no pasa las validaciones, 0 si da todo ok y muestra el listado
 int eJugador_printConConf(eJugador arrayJugador[], eConfederacion arrayConf[], int lenI, int lenJ, short state)
 {
 	int retorno = -1;
@@ -56,6 +75,9 @@ int eJugador_printConConf(eJugador arrayJugador[], eConfederacion arrayConf[], i
 	{
 		if(lenI > 0 && lenJ > 0)
 		{
+			puts("----------------------------------------------------------------------------------------------------------------------------");
+			puts("| ID |         JUGADOR             |           POSICION          |NRO|         CONFEDERACION         |SALARIO  | CONTR | ESTADO");
+			puts("----------------------------------------------------------------------------------------------------------------------------");
 			for(i = 0; i < lenI; i++) // jugadores aca esta le ID
 			{
 				for(j = 0; j < lenJ; j++) // conf aca a donde pertenece
@@ -79,6 +101,16 @@ int eJugador_printConConf(eJugador arrayJugador[], eConfederacion arrayConf[], i
 	return retorno;
 }
 
+/// @fn int eJugador_printJugPorConf(eJugador[], eConfederacion[], int, int, int, short)
+/// @brief funcion para imprimir el array de confed con sus jugadores
+///
+/// @param arrayJugador array a evaluar
+/// @param arrayConf array a evaluar
+/// @param lenI tamaño del array
+/// @param lenJ tamaño del array
+/// @param idConf int par ael id
+/// @param state estado del arra
+/// @return -1 si no pasa las validaciones, 0 si da todo ok y muestra el listado
 int eJugador_printJugPorConf(eJugador arrayJugador[], eConfederacion arrayConf[], int lenI, int lenJ, int idConf, short state)
 {
 	int retorno = -1;
@@ -89,6 +121,9 @@ int eJugador_printJugPorConf(eJugador arrayJugador[], eConfederacion arrayConf[]
 	{
 		if(lenI > 0 && lenJ > 0 && idConf >= 100 && idConf <= 105)
 		{
+			puts("--------------------------------------------------------------------------------------------------------");
+			puts("|        CONFEDERACION        | ID |            NOMBRE            |       POSICION                | NRO ");
+			puts("--------------------------------------------------------------------------------------------------------");
 			for(i = 0; i < lenI; i++) // jugadores aca esta le ID
 			{
 				for(j = 0; j < lenJ; j++) // conf aca a donde pertenece
@@ -166,58 +201,77 @@ short eJugador_initArray(eJugador arrayJugador[], int len)
 	return retorno;
 }
 
+/// @fn eJugador eJugadorLoadOne()
+/// @brief funcion para cargar un jugador
+///
+/// @return el tipo de dato del jugador
 eJugador eJugadorLoadOne()
 {
 	eJugador j;
 	eJugador bufferJ;
+	int bufferInt;
 
 	eConfederacion arrayConfed[MAX_CONF] = {
-			{100, "CONMEBOL", "SUDAMERICA", 1916},
-			{101, "UEFA", "EUROPA", 1954},
-			{102, "AFC", "ASIA", 1954},
-			{103, "CAF", "AFRICA", 1957},
-			{104, "CONCACAF", "NORTE Y CENTRO AMERICA", 1961},
-			{105, "OFC", "OCEANIA", 1966}
+			{100, "CONMEBOL", "SUDAMERICA", 1916, 1},
+			{101, "UEFA", "EUROPA", 1954, 1},
+			{102, "AFC", "ASIA", 1954, 1},
+			{103, "CAF", "AFRICA", 1957, 1},
+			{104, "CONCACAF", "NORTE Y CENTRO AMERICA", 1961, 1},
+			{105, "OFC", "OCEANIA", 1966, 1}
 	};
 	//hacer unos while con un if de que no se puede cargar. o algun tipo de mensaje.
-	while(utn_getOnlyString("Ingrese el nombre del jugador: \n", "Error, debe ingresar 50 caracteres como máximo: \n", 1, MAX_CHAR, bufferJ.nombre)!=0)
+	if(utn_getOnlyString("Ingrese el nombre del jugador: \n", "Error, debe ingresar 50 caracteres como máximo: \n", 3, MAX_CHAR, bufferJ.nombre)==0)
 	{
 		strncpy(j.nombre, bufferJ.nombre, sizeof(j.nombre));
 		printf("Ingresaste: %s\n", j.nombre);
 	}
 
-
-	while(utn_getOnlyString("Ingrese la posicion del jugador: \n", "Error, debe ingresar 50 caracteres como máximo: \n", 1, MAX_CHAR, bufferJ.posicion)!=0)
+	MenuPosicion();
+	if(utn_getInt("Ingrese la posicion del jugador: \n", "Ingrese un valor entre 1 y 4\n", 1, 4, 3, &bufferInt)==0)
 	{
-		strncpy(j.posicion, bufferJ.posicion, sizeof(j.posicion));
-		printf("Ingresaste: %s\n", j.posicion);
+		switch (bufferInt) {
+		case 1:
+			strncpy(j.posicion,"arquero",sizeof(j.posicion));
+			printf("Ingresaste: %s\n", j.posicion);
+			break;
+		case 2:
+			strncpy(j.posicion,"defensor",sizeof(j.posicion));
+			printf("Ingresaste: %s\n", j.posicion);
+			break;
+		case 3:
+			strncpy(j.posicion,"mediocampista",sizeof(j.posicion));
+			printf("Ingresaste: %s\n", j.posicion);
+			break;
+		case 4:
+			strncpy(j.posicion,"delantero",sizeof(j.posicion));
+			printf("Ingresaste: %s\n", j.posicion);
+			break;
+		}
 	}
 
-
-	while(utn_getShort("Ingrese el numero de camiseta del jugador: \n", "Ingrese un valor entre 1 y 22\n", 1, MAX_CMST, 1, &bufferJ.numeroCamiseta)!=0)
+	if(utn_getShort("Ingrese el numero de camiseta del jugador: \n", "Ingrese un valor entre 1 y 22\n", 1, MAX_CMST, 3, &bufferJ.numeroCamiseta)==0)
 	{
 		j.numeroCamiseta=bufferJ.numeroCamiseta;
 		printf("Es: %d\n", j.numeroCamiseta);
 	}
 
+	eConfederacion_printAll(arrayConfed, MAX_CONF, OCUPADO);
 
-	eConfederacion_printAll(arrayConfed, MAX_CONF);
-
-	while(utn_getInt("Ingrese el ID de la confederacion del jugador: \n", "Ingrese un valor entre 100 y 106\n", 100, 106, 1, &bufferJ.idConfederacion)!=0)
+	if(utn_getInt("Ingrese el ID de la confederacion del jugador: \n", "Ingrese un valor entre 100 y 106\n", 100, 106, 3, &bufferJ.idConfederacion)==0)
 	{
 		j.idConfederacion=bufferJ.idConfederacion;
 		printf("Es: %d\n", j.idConfederacion);
 	}
 
 
-	while(utn_getFloat("Ingrese el salario del jugador: \n", "Error. debe ingresar un valor entre 1 y 10000\n", 1, MAX_SAL, 1, &bufferJ.salario)!=0)
+	if(utn_getFloat("Ingrese el salario del jugador: \n", "Error. debe ingresar un valor entre 1 y 10000\n", 1, MAX_SAL, 3, &bufferJ.salario)==0)
 	{
 		j.salario=bufferJ.salario;
 		printf("Es: %.2f\n", j.salario);
 	}
 
 
-	while(utn_getShort("Ingrese los anios de contrato: \n", "Ingrese un valor entre 1 y 10\n", 1, MAX_CONT, 1, &bufferJ.aniosContrato)!=0)
+	if(utn_getShort("Ingrese los anios de contrato: \n", "Ingrese un valor entre 1 y 10\n", 1, MAX_CONT, 3, &bufferJ.aniosContrato)==0)
 	{
 		j.aniosContrato=bufferJ.aniosContrato;
 		printf("Es: %d\n", j.aniosContrato);
@@ -226,6 +280,12 @@ eJugador eJugadorLoadOne()
 	return j;
 }
 
+/// @fn short eJugador_SearchEmpty(eJugador[], int)
+/// @brief funcion para buscar un espacio libre
+///
+/// @param arrayJugador array a evaluar
+/// @param len tamaño del array
+/// @return -1 si no pasa las validaciones, - 2 error len, -3 error array null, la posicion I libre si da ok.
 short eJugador_SearchEmpty(eJugador arrayJugador[], int len)
 {
 	short retorno = -1;
@@ -256,6 +316,11 @@ short eJugador_SearchEmpty(eJugador arrayJugador[], int len)
 	return retorno;
 }
 
+/// @fn short eJugador_SearchOcupado(eJugador[], int)
+/// @brief funcion para buscar un espacio ocupado
+///
+/// @param arrayJugador array a evaluar
+/// @param len tamaño del array
 short eJugador_SearchOcupado(eJugador arrayJugador[], int len)
 {
 	short retorno = -1;
@@ -285,6 +350,13 @@ short eJugador_SearchOcupado(eJugador arrayJugador[], int len)
 	return retorno;
 }
 
+/// @fn int eJugador_SearchIndexByID(eJugador[], int, int)
+/// @brief  busca index por ID
+///
+/// @param arrayJugador array a evaluar
+/// @param len tamaño del array
+/// @param id id a buscar
+/// @return-1 si no pasa las validaciones, - 2 error len, -3 error array null, posicion I del ID  si da ok.
 int eJugador_SearchIndexByID(eJugador arrayJugador[], int len, int id)
 {
 	int retorno = -1;
@@ -317,6 +389,12 @@ int eJugador_SearchIndexByID(eJugador arrayJugador[], int len, int id)
 	return retorno;
 }
 
+/// @fn short eJugador_Charge(eJugador[], int)
+/// @brief uncion para alta de jugadores, verifica que haya un espacio libre y cuando carga ok le da el estado de ocupado
+///
+/// @param arrayJugador array a evaluar
+/// @param len tamaño del array
+/// @return -1 si el array es nulo, -2 si le len esta mal definido, -3 si el array esta lleno, sino retorna 0 y carga el libro
 short eJugador_Charge(eJugador arrayJugador[], int len)
 {
 	short retorno = -1;
@@ -356,6 +434,12 @@ short eJugador_Charge(eJugador arrayJugador[], int len)
 	return retorno;
 }
 
+/// @fn short eJugador_Discharge(eJugador[], int)
+/// @brief funcion para dar de baja un jugador, verifica que haya cargado
+///
+/// @param arrayJugador array a evaluar
+/// @param len tamaño del array
+/// @return -1 si no pasa las validaciones, - 2 error len, -3 error array null, 0 si da baja ok
 short eJugador_Discharge(eJugador arrayJugador[], int len)
 {
 	short retorno = -1;
@@ -369,7 +453,7 @@ short eJugador_Discharge(eJugador arrayJugador[], int len)
 		{
 			eJugador_printAll(arrayJugador, len, OCUPADO);
 			fflush(stdin);
-			utn_getShort("Seleccione el ID que desea dar de baja: ", "Error, debe seleccionar un ID valido: ", 100, 199, 2, &indexOcupado);
+			utn_getShort("Seleccione el ID que desea dar de baja: ", "Error, debe seleccionar un ID valido: ", 1000, 4000, 2, &indexOcupado);
 			for (int i = 0; i < len; ++i)
 			{
 				if(indexOcupado == arrayJugador[i].id)
@@ -390,6 +474,12 @@ short eJugador_Discharge(eJugador arrayJugador[], int len)
 	return retorno;
 }
 
+/// @fn int eJugador_Modify(eJugador[], int)
+/// @brief  funcion para modificar un jugador cargado, valida que haya alguno cargado
+///
+/// @param arrayJugador array a evaluar
+/// @param len tamaño del array
+/// @return  -1 si no pasa las validaciones, - 2 error len, -3 error array null, 0 si modifica  ok
 int eJugador_Modify(eJugador arrayJugador[], int len)
 {
 	int retorno = -1;;
@@ -414,7 +504,7 @@ int eJugador_Modify(eJugador arrayJugador[], int len)
 			eJugador_printAll(arrayJugador, len, OCUPADO);
 			fflush(stdin);
 
-			if(utn_getInt("Ingrese el ID que desa modificar: \n", "Error, ingrese un ID válido. Entre 100 y 199: \n",100, 199, 2, &bufferID) == 0)
+			if(utn_getInt("Ingrese el ID que desa modificar: \n", "Error, ingrese un ID válido. Entre 1000 y 4000: \n",1000, 4000, 2, &bufferID) == 0)
 			{
 				bufferIndex = eJugador_SearchIndexByID(arrayJugador, len, bufferID);
 
@@ -465,7 +555,7 @@ int eJugador_Modify(eJugador arrayJugador[], int len)
 					}
 					break;
 				case 4:
-					eConfederacion_printAll(arrayConfed, MAX_CONF);
+					eConfederacion_printAll(arrayConfed, MAX_CONF, OCUPADO);
 
 					if(utn_getInt("Ingrese el ID de la confederacion del jugador: \n", "Ingrese un valor entre 100 y 106\n", 100, 106, 1, &bufferJ.idConfederacion)==0)
 					{
@@ -520,6 +610,14 @@ int eJugador_Modify(eJugador arrayJugador[], int len)
 	return retorno;
 }
 
+/// @fn int eJugador_SortByConf(eJugador[], eConfederacion[], int, int)
+/// @brief funcion que ordena los jugadores por confederacion
+///
+/// @param arrayJugador array a evaluar
+/// @param arrayConf array a evaluar
+/// @param len tamaño del array
+/// @param orden orden del ordenamiento
+/// @return
 int eJugador_SortByConf(eJugador arrayJugador[], eConfederacion arrayConf[], int len, int orden)
 {
 	int retorno = -1;
@@ -586,6 +684,14 @@ int eJugador_SortByConf(eJugador arrayJugador[], eConfederacion arrayConf[], int
 	return retorno;
 }
 
+/// @fn int eJugador_SortByConfyNombre(eJugador[], eConfederacion[], int, int)
+/// @brief ordena como primer criterio la confederacion y despues el nombre de los jugadores
+///
+/// @param arrayJugador array a evaluar
+/// @param arrayConf array a evaluar
+/// @param len tamaño del array
+/// @param orden orden del ordenamiento
+/// @return -1 si no pasa las validaciones si e sok 0
 int eJugador_SortByConfyNombre(eJugador arrayJugador[], eConfederacion arrayConf[], int len, int orden)
 {
 	int retorno = -1;
@@ -646,24 +752,224 @@ int eJugador_SortByConfyNombre(eJugador arrayJugador[], eConfederacion arrayConf
 	return retorno;
 }
 
-int eJugador_AcumAniosContByConf(eJugador arrayJugador[], eConfederacion arrayConf[], int len1, int len2, short acum[])
+//int eJugador_AcumAniosContByConf(eJugador arrayJugador[], eConfederacion arrayConf[], int len1, int len2, short acum[])
+//{
+//	int retorno = -1;
+//	int i;
+//	int j;
+//
+//	if (arrayJugador != NULL && arrayConf != NULL && acum != NULL && len1 > 0 && len2 > 0)
+//	{
+//		for (i = 0; i < len1; ++i)
+//		{
+//			for (j = 0; j < len2; ++j)
+//			{
+//				if (arrayJugador[j].idConfederacion == arrayConf[i].id)
+//				{
+//					acum[i] += arrayJugador[j].aniosContrato;
+//					retorno = 0;
+//				}
+//			}
+//		}
+//	}
+//	return retorno;
+//}
+
+/// @fn int eJugador_MayorCantAnios(eJugador[], eConfederacion[], int, int)
+/// @brief funcion para saber la conf con mayor cantidad de años de contrato
+///
+/// @param arrayJugador array a evaluar
+/// @param arrayConf array a evaluar
+/// @param len1 tamaño
+/// @param len2 tamaño
+/// @return -1 si no apsa las validaciones 0 si da ok y muestra.
+int eJugador_MayorCantAnios(eJugador arrayJugador[], eConfederacion arrayConf[], int len1, int len2)
+{
+	int retorno = -1;
+	char maxConf[50];
+	int index;
+	int i;
+	int j;
+	short acum;
+	int maximoAnioos = 0;
+	int flag = 0;
+
+	if(arrayJugador != NULL && arrayConf != NULL && len1 > 0 && len2 > 0)
+	{
+		retorno = 0;
+		printf("Los anios de contrato de confederacion son:\n");
+
+		for(i = 0; i < len1; ++i) // confe
+		{
+			acum = 0;
+			for(j = 0; j < len2; ++j) //jug
+			{
+				if(arrayConf[i].id == arrayJugador[j].idConfederacion
+						&& arrayJugador[j].isEmpty == OCUPADO && arrayConf[i].isEmpty == OCUPADO)
+				{
+					acum += arrayJugador[j].aniosContrato;
+				}
+			}
+
+			if(maximoAnioos < acum)
+			{
+				maximoAnioos = acum;
+				index = i;
+				strcpy(maxConf, arrayConf[index].nombre);
+
+				flag=0;
+			}
+			else
+			{
+				if(maximoAnioos==acum)
+				{
+					flag=1;
+				}
+			}
+			printf("%-10s  Anios de contrato: %d\n", arrayConf[i].nombre, acum);
+		}
+
+		if(flag==1)
+		{
+			printf("\nHay mas de confederacion con igual cantidad de anios.\n\n\n");
+		}
+		else
+		{
+			printf("\n\nLa confederacion con mas anios de contrato en total es : %s\n\n", maxConf);
+		}
+	}
+	return retorno;
+}
+
+//int eJugador_PorcentajeByConf(eJugador arrayJugador[], eConfederacion arrayConf[], int len1, int len2)
+//{
+//	int retorno = -1;
+//	int i;
+//	int j;
+//	int contTotal;
+//	int contConf[MAX_CONF] = {0};
+//	//float bufferPromedio[MAX_CONF] = {0};
+//	float promedio[MAX_CONF] = {0};
+//
+//	if(arrayJugador != NULL && arrayConf != NULL && len1 > 0 && len2 > 0)
+//	{
+//		retorno = 0;
+//		for(j = 0; j < len2; ++j) // confe
+//		{
+//			contTotal++;
+//
+//		}
+//		printf("la contaidad total es: %d\n", contTotal);
+//
+//		for(i=0;i < len1 ; ++i) //confe
+//		{
+//			for(j= 0 ; j < len2 ;++j) //jug
+//			{
+//				if(arrayJugador[j].id == arrayConf[i].id &&
+//						arrayJugador[j].isEmpty == OCUPADO && arrayConf[i].isEmpty == OCUPADO)
+//				{
+//					contConf[j]++;
+//					promedio[i] = eAuxiliar_Dividir(promedio, contConf[j], contTotal);
+//					printf("El promedio es: %.2f\n\n", promedio[i]);
+//				}
+//			}
+//		}
+//
+//	}
+//	return retorno;
+//}
+
+/// @fn int eJugador_CountbyConf(eJugador[], eConfederacion[], int, int, int[])
+/// @brief funcion que cuenta los jugadores por cada confederacion
+///
+/// @param arrayJugador array a evaluar
+/// @param arrayConf array a evaluar
+/// @param len1 tamaño del array
+/// @param len2 tamaño del array
+/// @param cont
+/// @return -1 si no pasa las validaciones 0 si da ok
+int eJugador_CountbyConf(eJugador arrayJugador[], eConfederacion arrayConf[], int len1, int len2, int cont[])
 {
 	int retorno = -1;
 	int i;
 	int j;
 
-	if (arrayJugador != NULL && arrayConf != NULL && acum != NULL && len1 > 0 && len2 > 0)
+	if (arrayJugador != NULL && arrayConf != NULL && cont != NULL && len1 > 0 && len2 > 0)
 	{
-		for (i = 0; i < len1; ++i) //confed
+		for (i = 0; i < len1; ++i) // conf
 		{
-			for (j = 0; j < len2; ++j) //jug
+			for (j = 0; j < len2; ++j) // jug
 			{
 				if (arrayJugador[j].idConfederacion == arrayConf[i].id)
 				{
-					acum[i] += arrayJugador[j].aniosContrato;
+					cont[i]++;
 					retorno = 0;
 				}
 			}
+		}
+	}
+
+	return retorno;
+}
+
+/// @fn int eJugador_MayorCantJug(eJugador[], eConfederacion[], int, int)
+/// @brief funcion que cuenta jugadores por region e informa cual es la que mas tiene
+///
+/// @param arrayJugador array a evaluar
+/// @param arrayConf array a evaluar
+/// @param len1 tamaño del array
+/// @param len2 tamaño del array
+/// @return -1 si no pas alas validaciones, si es ok 0  y muestra
+int eJugador_MayorCantJug(eJugador arrayJugador[], eConfederacion arrayConf[], int len1, int len2)
+{
+	int retorno = -1;
+	char maxConf[50];
+	int idConf;
+	int index;
+	int i;
+	int j;
+	int maximoJug = 0;
+	int flag = 0;
+	int contador[MAX_CONF] = {0};
+
+	if(arrayJugador != NULL && arrayConf != NULL && len1 > 0 && len2 > 0)
+	{
+		retorno = 0;
+		eJugador_CountbyConf(arrayJugador, arrayConf, len1, len2, contador);
+
+		for(i = 0; i < len1; ++i) // confe
+		{
+			for(j = 0; j < len2; ++j) //jug
+			{
+				if(arrayConf[i].id == arrayJugador[j].idConfederacion
+						&& arrayJugador[j].isEmpty == OCUPADO && arrayConf[i].isEmpty == OCUPADO)
+				{
+					if(maximoJug < contador[i])
+					{
+						maximoJug = contador[i];
+						index = i;
+						strcpy(maxConf, arrayConf[index].nombre);
+						idConf = arrayConf[index].id;
+						flag = 0;
+						eJugador_printJugPorConf(arrayJugador, arrayConf, MAX_JUG, MAX_CONF, idConf, OCUPADO);
+					}
+					else
+					{
+						if(maximoJug == contador[j])
+						{
+							flag=1;
+						}
+					}
+				}
+			}
+		}
+		if(flag == 1)
+		{
+			printf("\nHay mas de confederacion con igual cantidad de jugadores.\n\n\n");
+		}
+		else
+		{
+			printf("\n\nLa confederacion con mayor cantidad de jugadores es : %s\n\n", maxConf);
 		}
 	}
 	return retorno;
@@ -671,7 +977,7 @@ int eJugador_AcumAniosContByConf(eJugador arrayJugador[], eConfederacion arrayCo
 
 static int genID(void)
 {
-	static int contadorAutoincremental = 100;
+	static int contadorAutoincremental = 1000;
 
 	return contadorAutoincremental++;
 }

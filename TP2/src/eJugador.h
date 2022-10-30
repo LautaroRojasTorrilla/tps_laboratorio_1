@@ -28,7 +28,7 @@ typedef struct{
 
 
 void eJugador_printOne(eJugador jug);
-int eJugador_printAll(eJugador arrayJugador[], int len, int state);
+int eJugador_printAll(eJugador arrayJugador[], int len, short state);
 int eJugador_printConConf(eJugador arrayJugador[], eConfederacion arrayConf[], int lenI, int lenJ, short state);
 int eJugador_printJugPorConf(eJugador arrayJugador[], eConfederacion arrayConf[], int lenI, int lenJ, int idConf, short state);
 
@@ -43,9 +43,11 @@ int eJugador_Modify(eJugador arrayJugador[], int len);
 int eJugador_SortByConf(eJugador arrayJugador[], eConfederacion arrayConf[], int len, int orden);
 int eJugador_SortByConfyNombre(eJugador arrayJugador[], eConfederacion arrayConf[], int len, int orden);
 
-//int eJugador_AcumAniosCont(eJugador arrayJugador[], int len, short *acum);//acumulador individual
-int eJugador_AcumAniosContByConf(eJugador arrayJugador[], eConfederacion arrayConf[], int len1, int len2, short acum[]);
-//en cada posicion de ese array guada un valor que va a cambiar a medida que se levayan pasando los jugadores
+//int eJugador_AcumAniosContByConf(eJugador arrayJugador[], eConfederacion arrayConf[], int len1, int len2, short acum[]);
+int eJugador_MayorCantAnios(eJugador arrayJugador[], eConfederacion arrayConf[], int len1, int len2);
+//int eJugador_PorcentajeByConf(eJugador arrayJugador[], eConfederacion arrayConf[], int len1, int len2);
+int eJugador_CountbyConf(eJugador arrayJugador[], eConfederacion arrayConf[], int len1, int len2, int cont[]);
+int eJugador_MayorCantJug(eJugador arrayJugador[], eConfederacion arrayConf[], int len1, int len2);
 
 
 

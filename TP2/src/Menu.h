@@ -13,5 +13,7 @@
 void MenuPrincipal();
 void MenuInformar();
 void MenuModificar();
+void MenuPosicion();
+
 
 #endif /* MENU_H_ */

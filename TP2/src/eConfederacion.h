@@ -13,6 +13,7 @@
 #include <string.h>
 #include <stddef.h>
 #include "Input.h"
+#include "Menu.h"
 
 #define LIBRE 0
 #define OCUPADO 1
@@ -23,7 +24,7 @@
 #define MAX_CMST 22
 #define MAX_SAL 10000
 #define MAX_CONT 10
-#define MAX_JUG 11
+#define MAX_JUG 3000
 
 typedef struct{
     int id;
@@ -34,7 +35,7 @@ typedef struct{
 }eConfederacion;
 
 void eConfederacion_printOne(eConfederacion conf);
-int eConfederacion_printAll(eConfederacion arrayConf[], int len);
+int eConfederacion_printAll(eConfederacion arrayConf[], int len, short state);
 eConfederacion eConfederacionLoadOne();
 int eConfederacion_Relacion(eConfederacion arrayConf[], char bufferNombre[], int idConf, int len);
 

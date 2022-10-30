@@ -25,6 +25,7 @@ float eAuxiliar_AcumSal(eAuxiliar arrayAux[], eJugador arrayJugador[], int len);
 int eAuxiliar_Count(eAuxiliar arrayAux[], eJugador arrayJugador[], int len);
 int eAuxiliar_Dividir(float *pResultado, int operador1, int operador2);
 int eAuxiliar_CountSupSal(eAuxiliar arrayAux[], eJugador arrayJugador[], int len, float promedio);
+int eAuxiliar_Promedio(float *pResultado, int operador1, int operador2);
 
 
 

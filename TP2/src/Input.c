@@ -354,7 +354,7 @@ int esNombre(char* cadena,int len)
 	{
 		for(i=0 ; cadena[i] != '\0' && i < len; i++)
 		{
-			if((cadena[i] < 'A' || cadena[i] > 'Z' ) && (cadena[i] < 'a' || cadena[i] > 'z' ) && cadena[i] == ' ')
+			if((cadena[i] < 'A' || cadena[i] > 'Z' ) && (cadena[i] < 'a' || cadena[i] > 'z' ) && cadena[i] != ' ')
 			{
 				retorno = 0;
 				break;
@@ -363,6 +363,7 @@ int esNombre(char* cadena,int len)
 	}
 	return retorno;
 }
+
 
 /// @fn int utn_getStringAndNum(char*, char*, int, int, char*)
 /// @brief obtiene una cadena de caracteres que incluye numeros.
