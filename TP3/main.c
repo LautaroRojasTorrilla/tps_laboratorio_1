@@ -1,10 +1,3 @@
-/*
- * Hice la función para que me cree el ID autoincremental en un archivo,
- * con el primer id disponible. Pero me dejo de funcionar y no encuentro el error.
- * Por eso dejé la otra función con id en base al mayor.
- *
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -24,6 +17,7 @@ int main()
 	LinkedList* listaSelecciones = ll_newLinkedList();
 	int flag = 0;
 	int flagbin = 0;
+	int retorno;
 
 	do{
 		MenuPrincipal();
@@ -89,7 +83,11 @@ int main()
 						controller_listarSelecciones(listaSelecciones);
 						break;
 					case 'c':
-						controller_listarJugadoresConvocadosConPais(listaJugadores, listaSelecciones);
+						if(controller_listarJugadoresConvocadosConPais(listaJugadores, listaSelecciones) == -1)
+						{
+							puts("No hay jugadores convocados");
+							puts("\n\n");
+						}
 						break;
 					case 's':
 						break;
@@ -130,7 +128,7 @@ int main()
 			if (flag == 1)
 			{
 				do {
-					puts("1. Jugadores\n2. Seleccion\n3. Salir\n");
+					puts("1. Jugadores\n2. Selecciones por Conf\n3. Salir\n");
 					utn_getInt("Favor de ingresar una opción: \n", "Error ingrese entre 1 y 3\n", 1, 3, 2, &optionOrdenar);
 					switch (optionOrdenar) {
 					case 1:

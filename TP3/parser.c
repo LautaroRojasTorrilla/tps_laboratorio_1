@@ -86,6 +86,31 @@ int parser_JugadorFromBinary(FILE* pFile , LinkedList* pArrayListJugador)
 	return retorno;
 }
 
+int parser_JugadorToText(FILE* pFile , LinkedList* pArrayListJugador)
+{
+	int retorno = 1;
+	int i;
+
+	Jugador* unJugador = NULL;
+
+	if (pFile != NULL && pArrayListJugador != NULL)
+	{
+
+			int cantidad = ll_len(pArrayListJugador);
+
+			fprintf(pFile,"%s,%s,%s,%s,%s,%s\n","id","nombreCompleto","edad","posicion","nacionalidad","idSeleccion");
+
+			for (i=0; i< cantidad; i++)
+			{
+				unJugador = (Jugador*) ll_get(pArrayListJugador, i);
+
+				jug_printOneFile(pFile, unJugador);
+			}
+			retorno = 0;
+	}
+	return retorno;
+}
+
 int parser_JugadorToBinary(FILE* pFile , LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion)
 {
 

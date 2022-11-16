@@ -55,3 +55,21 @@ void MenuConfed()
 	puts("CONMEBOL\n");
 	puts("UEFA\n");
 }
+
+void MenuPosiciones()
+{
+	puts("\n");
+	puts(" 1.Portero\n");
+	puts(" 2.Defensa central\n");
+	puts(" 3.Lateral izquierdo\n");
+	puts(" 4.Lateral derecho\n");
+	puts(" 5.Pivote\n");
+	puts(" 6.Interior derecho\n");
+	puts(" 7.Interior izquierdo\n");
+	puts(" 8.Mediocentro\n");
+	puts(" 9.Mediocentro ofensivo\n");
+	puts(" 10.Mediapunta\n");
+	puts(" 11.Extremo derecho\n");
+	puts(" 12.Extremo izquierdo\n");
+	puts(" 13.Delantero Centro\n");
+}

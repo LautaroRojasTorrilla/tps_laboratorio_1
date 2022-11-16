@@ -211,6 +211,44 @@ int ll_remove(LinkedList* this,int index)
 	//no perder la referencia
 	int returnAux = -1;
 
+	Node* nodoAnterior = NULL;
+	Node* nodoActual = NULL;
+	Node* nodoSiguiente = NULL;
+	if(this != NULL && index >= 0 && index < ll_len(this))
+	{
+		nodoActual = getNode(this,index);
+		if(nodoActual != NULL)
+		{
+
+			if(index == 0)
+			{
+				//cuando el index es 0 es el elemento siguiente a ll
+				//es el siguinete al actual, o sea al index 1
+				nodoSiguiente = nodoActual->pNextNode;
+				this->pFirstNode = nodoSiguiente;
+				returnAux = 0;
+			}
+			else
+			{
+				//como el index tiene anterior y posterior
+				//asigno el puntero del indice anterior que apuntnaba
+				//al nodo actual y lo asigno al nodo siguiente
+				nodoAnterior = getNode(this, index-1);
+				if(nodoAnterior!= NULL)
+				{
+					nodoAnterior->pNextNode= nodoActual->pNextNode;
+					returnAux = 0;
+				}
+			}
+			//disminuyo el tamaño y libero el nodo actual.
+			if(returnAux == 0)
+			{
+				this->size--;
+				free(nodoActual);
+			}
+		}
+	}
+
 	return returnAux;
 }
 
@@ -287,6 +325,13 @@ int ll_push(LinkedList* this, int index, void* pElement)
 {
 	int returnAux = -1;
 
+	if(this != NULL && index >= 0 && index <= ll_len(this))
+	{
+		if(!addNode(this,index,pElement))
+		{
+			returnAux = 0;
+		}
+	}
 	return returnAux;
 }
 

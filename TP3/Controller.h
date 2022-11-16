@@ -1,4 +1,4 @@
-int controller_buscaMaxId(LinkedList* pArrayListJugador);
+//int controller_buscaMaxId(LinkedList* pArrayListJugador);
 
 int controller_cargarJugadoresDesdeTexto(char* path , LinkedList* pArrayListJugador);
 int controller_cargarJugadoresDesdeBinario(char* path , LinkedList* pArrayListJugador);
@@ -10,6 +10,7 @@ int controller_listarJugadoresConPais(LinkedList* pArrayListJugador, LinkedList*
 int controller_listarJugadoresConvocadosConPais(LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion);
 int controller_ordenarJugadores(LinkedList* pArrayListJugador);
 int controller_guardarJugadoresModoTexto(char* path , LinkedList* pArrayListJugador);
+int controller_guardarIDJugadoresModoTexto(char* path , char* id);
 int controller_guardarJugadoresModoBinario(char* path , LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion);
 int controller_convocarJugador(LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion);
 int controller_buscarJugID(LinkedList* pArrayListJugador, char* mensaje, char* mensajeError);

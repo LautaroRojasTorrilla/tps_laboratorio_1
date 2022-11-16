@@ -10,5 +10,6 @@ void MenuListado();
 void MenuConvocar();
 void MenuOrdenar();
 void MenuConfed();
+void MenuPosiciones();
 
 #endif /* MENU_H_ */
