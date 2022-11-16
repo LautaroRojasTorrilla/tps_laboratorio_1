@@ -636,6 +636,12 @@ int controller_guardarJugadoresModoTexto(char* path , LinkedList* pArrayListJuga
 	return retorno;
 }
 
+/// @fn int controller_guardarIDJugadoresModoTexto(char*, char*)
+/// @brief guarda el id del jugador en archivo *.csv (modo texto)
+///
+/// @param path puntero
+/// @param id puntero
+/// @return se inniciliza en 1, 0 si puede realizar y cerrar el archivo
 int controller_guardarIDJugadoresModoTexto(char* path , char* id)
 {
 	int retorno = 1;
@@ -807,6 +813,12 @@ int controller_buscarJugID(LinkedList* pArrayListJugador, char* mensaje, char* m
 	return retorno;
 }
 
+/// @fn int controller_cargarJugIDModoTexto(char*, char*)
+/// @brief carga el id de jugadores de archivo *.csv (texto)
+///
+/// @param path puntero
+/// @param id puntero
+/// @return se inicia en 0, 1 si carga ok
 int controller_cargarJugIDModoTexto(char* path, char* id)
 {
 	int retorno = 0;

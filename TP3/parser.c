@@ -86,6 +86,12 @@ int parser_JugadorFromBinary(FILE* pFile , LinkedList* pArrayListJugador)
 	return retorno;
 }
 
+/// @fn int parser_JugadorToText(FILE*, LinkedList*)
+/// @brief parsea los datos de jugadores para texto
+///
+/// @param pFile puntero tipo file
+/// @param pArrayListJugador puntero ll
+/// @return 0 da todo ok, se inicializa en 1
 int parser_JugadorToText(FILE* pFile , LinkedList* pArrayListJugador)
 {
 	int retorno = 1;
@@ -111,6 +117,14 @@ int parser_JugadorToText(FILE* pFile , LinkedList* pArrayListJugador)
 	return retorno;
 }
 
+/// @fn int parser_JugadorToBinary(FILE*, LinkedList*, LinkedList*)
+/// @brief pasea jugadores para binario, seleccionando confederacion
+///
+/// @param pFile puntero a file
+/// @param pArrayListJugador puntero a ll
+/// @param pArrayListSeleccion puntero a ll
+/// @return se inicializa en 1, 0 si da todo ok
+///
 int parser_JugadorToBinary(FILE* pFile , LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion)
 {
 
