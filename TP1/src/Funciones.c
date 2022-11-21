@@ -52,12 +52,12 @@ void MenuInformacion(float promedio1, float promedio2, float promedio3, float pr
 	puts("\t*  MENU INFORMACION  *");
 	puts("\t**********************");
 	puts("");
-	printf("Porcentaje UEFA %.2f\n", promedio1);
-	printf("Porcentaje CONMEBOL %.2f\n", promedio2);
-	printf("Porcentaje CONCACAF %.2f\n", promedio3);
-	printf("Porcentaje AFC %.2f\n", promedio4);
-	printf("Porcentaje OFC %.2f\n", promedio5);
-	printf("Porcentaje CAF %.2f\n", promedio6);
+	printf("Promedio UEFA %.2f\n", promedio1);
+	printf("Promedio CONMEBOL %.2f\n", promedio2);
+	printf("Promedio CONCACAF %.2f\n", promedio3);
+	printf("Promedio AFC %.2f\n", promedio4);
+	printf("Promedio OFC %.2f\n", promedio5);
+	printf("Promedio CAF %.2f\n", promedio6);
 }
 
 /// @fn void MostrarCostos(float, float, float)

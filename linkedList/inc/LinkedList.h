@@ -50,7 +50,7 @@ int ll_isEmpty(LinkedList* this);
 int ll_push(LinkedList* this, int index, void* pElement);
 void* ll_pop(LinkedList* this,int index);                           //elimina un elemento (los enlaces a ese elemento) y devuelve un puntero a ese elemento
 int ll_contains(LinkedList* this, void* pElement);
-int ll_containsAll(LinkedList* this,LinkedList* this2);
+int ll_containsAll(LinkedList* this,LinkedList* this2); // hasta acá ok con test ok
 LinkedList* ll_subList(LinkedList* this,int from,int to);
 LinkedList* ll_clone(LinkedList* this);
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order);

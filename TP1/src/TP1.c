@@ -234,8 +234,8 @@ int main(void) {
 				break;
 			case 3:
 				//puts("Entró 3.");
-				if(costoDeHospedaje == 0 || costoDeComida == 0 || costoDeTransporte == 0
-						|| contadorAFC == 0 || contadorCAF == 0 || contadorCONCACAF == 0 || contadorCONMEBOL == 0 || contadorUEFA == 0 || contadorOFC == 0)
+				if((costoDeHospedaje == 0 && costoDeComida == 0 && costoDeTransporte == 0) &&
+						(contadorAFC == 0 || contadorCAF == 0 || contadorCONCACAF == 0 || contadorCONMEBOL == 0 || contadorUEFA == 0 || contadorOFC == 0) )
 				{
 					puts("Debe completar los puntos 1 y 2 previamente.");
 				}
